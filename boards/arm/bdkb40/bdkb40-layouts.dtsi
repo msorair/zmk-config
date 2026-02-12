@@ -1,7 +1,7 @@
 #include <physical_layouts.dtsi>
 
 / {
-    layouts_common_ortho_4x10_position_map: layouts_common_ortho_4x10_position_map {
+    default_position_map: default_position_map {
         compatible = "zmk,physical-layout-position-map";
 
         complete;
@@ -9,7 +9,7 @@
 };
 
 / {
-    layout_ortho_4x10_1x2u: layout_ortho_4x10_1x2u {
+    default_layout: default_layout {
         compatible = "zmk,physical-layout";
         display-name = "1x2U Space";
 
@@ -60,9 +60,9 @@
     };
 };
 
-&layouts_common_ortho_4x10_position_map {
-    layout_ortho_4x10_1x2u_posmap: layout_ortho_4x10_1x2u {
-        physical-layout = <&layout_ortho_4x10_1x2u>;
+&default_position_map {
+    default_layout_posmap: default_layout {
+        physical-layout = <&default_layout>;
         positions
             = < 0  1  2  3  4  5  6  7  8  9 10 11>
             , <  12 13 14 15 16 17 18 19 20 21 22 >
