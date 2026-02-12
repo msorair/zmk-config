@@ -5,7 +5,7 @@
 # pass flags to the build command, `snippet` to add a Zephyr snippet, and
 # `artifact-name` to assign a name to distinguish build outputs from each other:
 #
-# board: [ "nice_nano" ]
+board: [ "bdkb40" ]
 # shield: [ "corne_left", "corne_right" ]
 # include:
 #   - board: bdn9_rev2
@@ -17,4 +17,3 @@
 #     cmake-args: -DCONFIG_ZMK_STUDIO=y
 #     artifact-name: corne_left_with_studio
 #
----
