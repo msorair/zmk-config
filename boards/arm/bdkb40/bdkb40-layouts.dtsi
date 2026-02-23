@@ -1,17 +1,13 @@
 #include <physical_layouts.dtsi>
 
-/ {
-    default_position_map: default_position_map {
-        compatible = "zmk,physical-layout-position-map";
-
-        complete;
-    };
-};
 
 / {
+
     default_layout: default_layout {
         compatible = "zmk,physical-layout";
-        display-name = "1x2U Space";
+        display-name = "bdkb40 default layout";
+        kscan = <&kscan_main>;
+        transform = <&default_transform>;
 
         keys  //                     w     h     x    y     rot    rx    ry
             = <&key_physical_attrs 100   100     0    0       0     0     0>
@@ -57,6 +53,13 @@
             , <&key_physical_attrs 100   100   975  300       0     0     0>
             , <&key_physical_attrs 125   100  1075  300       0     0     0>
             ;
+    };
+
+
+    default_position_map: default_position_map {
+        compatible = "zmk,physical-layout-position-map";
+
+        complete;
     };
 };
 

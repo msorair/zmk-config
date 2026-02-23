@@ -5,7 +5,7 @@
 if BOARD_BDKB40
 
 config ZMK_KEYBOARD_NAME
-    default "bdkb40"
+    default "bdkb40-0.2"
 
 if USB
 
@@ -19,5 +19,11 @@ endif # USB
 
 config BT_CTLR
     default BT
+
+config ZMK_BLE
+	default y
+
+config ZMK_USB
+	default y
 
 endif # BOARD_BDKB40

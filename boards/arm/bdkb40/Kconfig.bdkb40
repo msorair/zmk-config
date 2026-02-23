@@ -3,3 +3,4 @@ config BOARD_BDKB40
     imply RETAINED_MEM
     imply RETENTION
     imply RETENTION_BOOT_MODE
+    imply I2C

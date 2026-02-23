@@ -2,11 +2,13 @@
 // See https://zmk.dev/docs/development/hardware-integration/new-shield for more instructions.
 
 #include <behaviors.dtsi>
+#include <dt-bindings/zmk/bt.h>
 #include <dt-bindings/zmk/keys.h>
+#include <dt-bindings/zmk/outputs.h>
 
 #define DEFAULT 0
-#define LOWER   1
-#define RAISE   2
+#define RAISE   1
+#define LOWER   2
 
 / {
     // Define a default keymap here.
@@ -22,7 +24,7 @@
             // |  SHIFT  |  Z  |  X  |  C  |  V  |  B  |  N  |  M  |  ,  |  .  | SHIFT |
             // |  CTRL |LMETA|  ALT  |   SPACE   |     SPACE     | Raise |RMETA|  CTRL |
             bindings = <
-                &kp ESC     &kp Q  &kp W  &kp E  &kp R  &kp T  &kp Y  &kp U  &kp I  &kp O  &kp P  &kp BSPC
+                &kp ESC     &kp Q   &kp W  &kp E  &kp R  &kp T  &kp Y  &kp U  &kp I  &kp O  &kp P  &kp BSPC
                 &kp CAPS    &kp A  &kp S  &kp D  &kp F  &kp G  &kp H  &kp J  &kp K         &kp L  &kp FSLH
                 &kp LSHIFT  &kp Z  &kp X  &kp C  &kp V  &kp B  &kp N  &kp M  &kp COMMA  &kp DOT   &kp RSHIFT
                 &kp LCTRL   &kp LMETA   &kp LALT   &kp SPACE   &kp SPACE     &mo RAISE  &kp RMETA &kp RCTRL
@@ -37,8 +39,8 @@
             // |  SHIFT  |  Z  |  X  |  C  |  V  |  B  |  N  |  M  |  ,  |  .  | SHIFT |
             // |  CTRL |LMETA|  ALT  |   SPACE   |     SPACE     | Raise |RMETA|  CTRL |
             bindings = <
-                &none &none &none &none &none &none &none &none &none &none &none &none
-                &none &none &none &none &none &none &none &none &none &none &none
+                &bt BT_CLR_ALL &bootloader &studio_unlock &kp SPACE &none &none &none &none &none &none &none &none
+                &out OUT_USB &out OUT_BLE &out OUT_TOG &none &none &none &none &none &none &none &none
                 &none &none &none &none &none &none &none &none &none &none &none
                 &none &none &none &none &none &none &none &none
             >;
