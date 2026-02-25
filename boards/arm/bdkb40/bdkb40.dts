@@ -67,38 +67,11 @@
         toggle-mode;
 		wakeup-source;
 		input-gpios
-			= <&gpio0 10 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>
-			, <&gpio1  6 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>
-			, <&gpio0  9 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>
+			= <&gpio0 10 GPIO_ACTIVE_LOW>
+			, <&gpio1  6 GPIO_ACTIVE_LOW>
+			, <&gpio0  9 GPIO_ACTIVE_LOW>
 			;
 	};
-
-    endpoint_sideband_behaviors {
-        compatible = "zmk,kscan-sideband-behaviors";
-        auto-enable;
-        kscan = <&kscan_toggle>;
-
-        toggle_usb {
-            column = <0>;
-            bindings = <&out OUT_USB>;
-        };
-
-        toggle_ble {
-            column = <1>;
-            bindings = <&out OUT_BLE>;
-        };
-
-        toggle_soft_off {
-            column = <2>;
-            bindings = <&soft_off>;
-        };
-    };
-
-    soft_off_wakers {
-        compatible = "zmk,soft-off-wakeup-sources";
-        status = "okay";
-        wakeup-sources = <&kscan_toggle>;
-    };
 
     default_transform: default_transform {
         // See https://zmk.dev/docs/development/hardware-integration/new-shield#matrix-transform
@@ -120,13 +93,13 @@
         // If you have a GPIO routed to a status LED, set it here.
         // Otherwise, delete this block.
         red_led: led_0 {
-            gpios = <&gpio0  7 GPIO_ACTIVE_HIGH>;
+            gpios = <&gpio0  4 GPIO_ACTIVE_LOW>;
         };
         blue_led: led_1 {
-            gpios = <&gpio0  4 GPIO_ACTIVE_HIGH>;
+            gpios = <&gpio0  7 GPIO_ACTIVE_LOW>;
         };
         green_led: led_2 {
-            gpios = <&gpio0 12 GPIO_ACTIVE_HIGH>;
+            gpios = <&gpio0 12 GPIO_ACTIVE_LOW>;
         };
     };
 

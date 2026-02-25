@@ -4,45 +4,98 @@
 #include <behaviors.dtsi>
 #include <dt-bindings/zmk/bt.h>
 #include <dt-bindings/zmk/keys.h>
-#include <dt-bindings/zmk/outputs.h>
+#include <dt-bindings/zmk/pointing.h>
 
 #define DEFAULT 0
-#define RAISE   1
-#define LOWER   2
+#define LOWER   1
+#define RAISE   2
 
 / {
     // Define a default keymap here.
     // See https://zmk.dev/docs/development/hardware-integration/new-shield#default-keymap.
+
+    combos {
+        compatible = "zmk,combos";
+
+        tabc {
+            bindings = <&kp LC(INSERT)>;
+            key-positions = <12 26>;
+        };
+
+        tabv {
+            bindings = <&kp LS(INSERT)>;
+            key-positions = <12 27>;
+        };
+    };
+
+    macros {
+        del_to_begin: m1 {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&kp LS(HOME) &kp DELETE>;
+            label = "M1";
+        };
+
+        del_to_end: del_to_end {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&kp LS(END) &kp DELETE>;
+            label = "DEL_TO_END";
+        };
+    };
+
     keymap {
         compatible = "zmk,keymap";
 
-        default_layer {
+        Core {
             display-name = "Default Layer";
+
             // ------------------------------------------------------------------------------------------------------------
             // | ESC |  Q  |  W  |  E  |  R  |  T  |  Y  |  U  |  I  |  O  |  P  |BSPC |
             // |  CAPS |  A  |  S  |  D  |  F  |  G  |  H  |  J  |  K  |  L  |    \    |
             // |  SHIFT  |  Z  |  X  |  C  |  V  |  B  |  N  |  M  |  ,  |  .  | SHIFT |
             // |  CTRL |LMETA|  ALT  |   SPACE   |     SPACE     | Raise |RMETA|  CTRL |
+
             bindings = <
-                &kp ESC     &kp Q   &kp W  &kp E  &kp R  &kp T  &kp Y  &kp U  &kp I  &kp O  &kp P  &kp BSPC
-                &kp CAPS    &kp A  &kp S  &kp D  &kp F  &kp G  &kp H  &kp J  &kp K         &kp L  &kp FSLH
-                &kp LSHIFT  &kp Z  &kp X  &kp C  &kp V  &kp B  &kp N  &kp M  &kp COMMA  &kp DOT   &kp RSHIFT
-                &kp LCTRL   &kp LMETA   &kp LALT   &kp SPACE   &kp SPACE     &mo RAISE  &kp RMETA &kp RCTRL
+                &kp ESC     &kp Q      &kp W     &kp E      &kp R        &kp T      &kp Y      &kp U     &kp I      &kp O    &kp P        &kp BSLH
+                &lt 2 TAB   &kp A      &kp S     &kp D      &kp F        &kp G      &kp H      &kp J     &kp K      &kp L    &lt 3 ENTER
+                &kp LSHIFT  &kp Z      &kp X     &kp C      &kp V        &kp B      &kp N      &kp M     &kp COMMA  &kp DOT  &kp RSHIFT
+                &kp LCTRL   &kp LMETA  &kp LALT  &kp SPACE  &lt 1 SPACE  &kp RCTRL  &kp RMETA  &kp RALT
             >;
         };
 
-        raise_layer {
-            display-name = "Raise Layer";
+        ORBIT {
+            display-name = "ORBIT";
+
             // ------------------------------------------------------------------------------------------------------------
             // | ESC |  Q  |  W  |  E  |  R  |  T  |  Y  |  U  |  I  |  O  |  P  |BSPC |
             // |  CAPS |  A  |  S  |  D  |  F  |  G  |  H  |  J  |  K  |  L  |    \    |
             // |  SHIFT  |  Z  |  X  |  C  |  V  |  B  |  N  |  M  |  ,  |  .  | SHIFT |
             // |  CTRL |LMETA|  ALT  |   SPACE   |     SPACE     | Raise |RMETA|  CTRL |
+
             bindings = <
-                &bt BT_CLR_ALL &bootloader &studio_unlock &kp SPACE &none &none &none &none &none &none &none &none
-                &out OUT_USB &out OUT_BLE &out OUT_TOG &none &none &none &none &none &none &none &none
-                &none &none &none &none &none &none &none &none &none &none &none
-                &none &none &none &none &none &none &none &none
+                &kp GRAVE  &kp N1  &kp N2  &kp N3          &kp N4     &kp N5    &kp N6    &kp N7    &kp N8    &kp N9     &kp N0  &kp BSPC
+                &none      &none   &none   &kp DEL         &kp RIGHT  &none     &kp BSPC  &none     &kp UP    &none      &none
+                &none      &none   &none   &none           &none      &kp LEFT  &none     &kp LEFT  &kp DOWN  &kp RIGHT  &none
+                &none      &none   &none   &kp LEFT_SHIFT  &none      &none     &none     &none
+            >;
+        };
+
+        NEBULA {
+            bindings = <
+                &none  &none     &none  &kp END    &none      &none           &none           &none            &kp MINUS  &kp EQUAL     &kp UP    &none
+                &none  &kp HOME  &none  &kp DEL    &kp RIGHT  &none           &kp BSPC        &kp LBKT         &kp RBKT   &kp SEMI      &kp APOS
+                &none  &none     &none  &kp CAPS   &none      &kp LEFT        &kp DOWN        &kp C_MENU       &none      &mmv MOVE_UP  &kp FSLH
+                &none  &none     &none  &kp LSHFT  &mkp LCLK  &mmv MOVE_LEFT  &mmv MOVE_DOWN  &mmv MOVE_RIGHT
+            >;
+        };
+
+        HORIZON {
+            bindings = <
+                &kp K_SLEEP  &kp F1      &kp F2       &kp F3      &kp F4          &kp F5        &kp F6           &kp F7      &kp F8     &kp F9     &kp F10     &kp K_SLEEP
+                &none        &none       &none        &none       &none           &kp C_PREV    &kp C_PP         &kp C_NEXT  &kp F11    &kp F12    &none
+                &none        &bt BT_PRV  &bt BT_NXT   &bt BT_CLR  &bt BT_CLR_ALL  &kp C_VOL_DN  &kp C_VOLUME_UP  &kp K_MUTE  &kp PG_DN  &kp PG_UP  &kp INSERT
+                &none        &sys_reset  &bootloader  &none       &studio_unlock  &soft_off     &kp BSPC         &kp DEL
             >;
         };
     };
