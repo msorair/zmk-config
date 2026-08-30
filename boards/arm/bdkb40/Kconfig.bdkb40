@@ -4,3 +4,36 @@ config BOARD_BDKB40
     imply RETENTION
     imply RETENTION_BOOT_MODE
     imply I2C
+
+if BOARD_BDKB40
+
+config BDKB_BATTERY_STATUS_LEDS
+    bool "Battery/charge status LEDs (GPIO)"
+    depends on LED && ZMK_BATTERY_REPORTING && USB_DEVICE_STACK
+
+config BDKB_BATTERY_STATUS_LED_LOW_ON_PCT
+    int
+    range 0 100
+    default 15
+
+config BDKB_BATTERY_STATUS_LED_LOW_OFF_PCT
+    int
+    range 0 100
+    default 18
+
+config BDKB_BATTERY_STATUS_LED_FULL_ON_PCT
+    int
+    range 0 100
+    default 98
+
+config BDKB_BATTERY_STATUS_LED_FULL_OFF_PCT
+    int
+    range 0 100
+    default 95
+
+config BDKB_BATTERY_STATUS_LED_BLINK_MS
+    int
+    range 100 5000
+    default 500
+
+endif

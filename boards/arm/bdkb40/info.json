@@ -1,0 +1,53 @@
+{
+  "layouts": {
+    "LAYOUT": {
+      "layout": [
+        { "label": "esc",   "row": 0, "col": 0,  "x": 0,     "y": 0 },
+        { "label": "q",     "row": 0, "col": 1,  "x": 1,     "y": 0 },
+        { "label": "w",     "row": 0, "col": 2,  "x": 2,     "y": 0 },
+        { "label": "e",     "row": 0, "col": 3,  "x": 3,     "y": 0 },
+        { "label": "r",     "row": 0, "col": 4,  "x": 4,     "y": 0 },
+        { "label": "t",     "row": 0, "col": 5,  "x": 5,     "y": 0 },
+        { "label": "y",     "row": 0, "col": 6,  "x": 6,     "y": 0 },
+        { "label": "u",     "row": 0, "col": 7,  "x": 7,     "y": 0 },
+        { "label": "i",     "row": 0, "col": 8,  "x": 8,     "y": 0 },
+        { "label": "o",     "row": 0, "col": 9,  "x": 9,     "y": 0 },
+        { "label": "p",     "row": 0, "col": 10, "x": 10,    "y": 0 },
+        { "label": "BS",    "row": 0, "col": 11, "x": 11,    "y": 0 },
+
+        { "label": "Caps",  "row": 1, "col": 0,  "x": 0,     "y": 1, "w": 1.25 },
+        { "label": "a",     "row": 1, "col": 1,  "x": 1.25,  "y": 1 },
+        { "label": "s",     "row": 1, "col": 2,  "x": 2.25,  "y": 1 },
+        { "label": "d",     "row": 1, "col": 3,  "x": 3.25,  "y": 1 },
+        { "label": "f",     "row": 1, "col": 4,  "x": 4.25,  "y": 1 },
+        { "label": "g",     "row": 1, "col": 5,  "x": 5.25,  "y": 1 },
+        { "label": "h",     "row": 1, "col": 6,  "x": 6.25,  "y": 1 },
+        { "label": "j",     "row": 1, "col": 7,  "x": 7.25,  "y": 1 },
+        { "label": "k",     "row": 1, "col": 8,  "x": 8.25,  "y": 1 },
+        { "label": "l",     "row": 1, "col": 9,  "x": 9.25,  "y": 1 },
+        { "label": "\\",    "row": 1, "col": 10, "x": 10.25, "y": 1, "w": 1.75 },
+
+        { "label": "Shift", "row": 2, "col": 0,  "x": 0,     "y": 2, "w": 1.75 },
+        { "label": "z",     "row": 2, "col": 1,  "x": 1.75,  "y": 2 },
+        { "label": "x",     "row": 2, "col": 2,  "x": 2.75,  "y": 2 },
+        { "label": "c",     "row": 2, "col": 3,  "x": 3.75,  "y": 2 },
+        { "label": "v",     "row": 2, "col": 4,  "x": 4.75,  "y": 2 },
+        { "label": "b",     "row": 2, "col": 5,  "x": 5.75,  "y": 2 },
+        { "label": "n",     "row": 2, "col": 6,  "x": 6.75,  "y": 2 },
+        { "label": "m",     "row": 2, "col": 7,  "x": 7.75,  "y": 2 },
+        { "label": ",",     "row": 2, "col": 8,  "x": 8.75,  "y": 2 },
+        { "label": ".",     "row": 2, "col": 9,  "x": 9.75,  "y": 2 },
+        { "label": "Shift", "row": 2, "col": 10, "x": 10.75, "y": 2, "w": 1.25 },
+
+        { "label": "Ctrl",  "row": 3, "col": 0,  "x": 0,     "y": 3, "w": 1.25 },
+        { "label": "Super", "row": 3, "col": 1,  "x": 1.25,  "y": 3 },
+        { "label": "Alt",   "row": 3, "col": 2,  "x": 2.25,  "y": 3, "w": 1.25 },
+        { "label": "",      "row": 3, "col": 3,  "x": 3.5,   "y": 3, "w": 2.25 },
+        { "label": "",      "row": 3, "col": 4,  "x": 5.75,  "y": 3, "w": 2.75 },
+        { "label": "Fn",    "row": 3, "col": 5,  "x": 8.5,   "y": 3, "w": 1.25 },
+        { "label": "Super", "row": 3, "col": 6,  "x": 9.75,  "y": 3 },
+        { "label": "Ctrl",  "row": 3, "col": 7,  "x": 10.75, "y": 3, "w": 1.25 }
+      ]
+    }
+  }
+}

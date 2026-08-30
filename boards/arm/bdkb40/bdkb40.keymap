@@ -6,13 +6,26 @@
 #include <dt-bindings/zmk/keys.h>
 #include <dt-bindings/zmk/pointing.h>
 
-#define DEFAULT 0
-#define LOWER   1
-#define RAISE   2
+#define LOCK 0
+#define WORK 1
+#define ORBIT   2
+#define NEBULA  3
+#define HORIZON 4
 
 / {
     // Define a default keymap here.
     // See https://zmk.dev/docs/development/hardware-integration/new-shield#default-keymap.
+
+    behaviors {
+        lt_rpt: layer_tap_repeat {
+            compatible = "zmk,behavior-hold-tap";
+            #binding-cells = <2>;
+            flavor = "tap-preferred";
+            tapping-term-ms = <200>;
+            quick-tap-ms = <200>;
+            bindings = <&mo>, <&kp>;
+        };
+    };
 
     combos {
         compatible = "zmk,combos";
@@ -20,15 +33,31 @@
         tabc {
             bindings = <&kp LC(INSERT)>;
             key-positions = <12 26>;
+            layers = <1>;
         };
 
         tabv {
             bindings = <&kp LS(INSERT)>;
             key-positions = <12 27>;
+            layers = <1>;
+        };
+
+        sleep_combo {
+            bindings = <&lock_and_sleep>;
+            key-positions = <37 38>;
+            layers = <1>;
+            timeout-ms = <80>;
         };
     };
 
     macros {
+        lock_and_sleep: lock_and_sleep {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&to 0 &soft_off>;
+            label = "LOCK_AND_SLEEP";
+        };
+
         del_to_begin: m1 {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
@@ -47,8 +76,19 @@
     keymap {
         compatible = "zmk,keymap";
 
-        Core {
-            display-name = "Default Layer";
+        LOCK {
+            display-name = "Lock Layer";
+
+            bindings = <
+                &none  &none  &none  &none  &none  &none  &none  &none  &none  &none  &none  &none
+                &none  &to 1  &none  &none  &none  &none  &none  &none  &none  &none  &none
+                &none  &none  &none  &none  &none  &none  &none  &none  &none  &none  &none
+                &none  &none  &none  &none  &none  &none  &none  &none
+            >;
+        };
+
+        WORK {
+            display-name = "Work Layer";
 
             // ------------------------------------------------------------------------------------------------------------
             // | ESC |  Q  |  W  |  E  |  R  |  T  |  Y  |  U  |  I  |  O  |  P  |BSPC |
@@ -57,10 +97,10 @@
             // |  CTRL |LMETA|  ALT  |   SPACE   |     SPACE     | Raise |RMETA|  CTRL |
 
             bindings = <
-                &kp ESC     &kp Q      &kp W     &kp E      &kp R        &kp T      &kp Y      &kp U     &kp I      &kp O    &kp P        &kp BSLH
-                &lt 2 TAB   &kp A      &kp S     &kp D      &kp F        &kp G      &kp H      &kp J     &kp K      &kp L    &lt 3 ENTER
-                &kp LSHIFT  &kp Z      &kp X     &kp C      &kp V        &kp B      &kp N      &kp M     &kp COMMA  &kp DOT  &kp RSHIFT
-                &kp LCTRL   &kp LMETA  &kp LALT  &kp SPACE  &lt 1 SPACE  &kp RCTRL  &kp RMETA  &kp RALT
+                &kp ESC     &kp Q      &kp W     &kp E      &kp R    &kp T      &kp Y      &kp U     &kp I      &kp O    &kp P        &kp BSLH
+                &lt 3 TAB   &kp A      &kp S     &kp D      &kp F    &kp G      &kp H      &kp J     &kp K      &kp L    &lt_rpt 4 ENTER
+                &kp LSHIFT  &kp Z      &kp X     &kp C      &kp V    &kp B      &kp N      &kp M     &kp COMMA  &kp DOT  &kp RSHIFT
+                &kp LCTRL   &kp LALT   &kp LMETA &kp SPACE  &mo 2    &kp RCTRL  &kp RMETA  &kp RALT
             >;
         };
 
@@ -75,27 +115,27 @@
 
             bindings = <
                 &kp GRAVE  &kp N1  &kp N2  &kp N3          &kp N4     &kp N5    &kp N6    &kp N7    &kp N8    &kp N9     &kp N0  &kp BSPC
-                &none      &none   &none   &kp DEL         &kp RIGHT  &none     &kp BSPC  &none     &kp UP    &none      &none
-                &none      &none   &none   &none           &none      &kp LEFT  &none     &kp LEFT  &kp DOWN  &kp RIGHT  &none
-                &none      &none   &none   &kp LEFT_SHIFT  &none      &none     &none     &none
+                &trans     &trans  &trans  &kp DEL         &kp RIGHT  &trans    &kp BSPC  &trans    &kp UP    &trans     &trans
+                &trans     &trans  &trans  &trans          &trans     &kp LEFT  &trans    &kp LEFT  &kp DOWN  &kp RIGHT  &trans
+                &trans     &trans  &trans  &kp LEFT_SHIFT  &trans     &trans    &trans    &trans
             >;
         };
 
         NEBULA {
             bindings = <
-                &none  &none     &none  &kp END    &none      &none           &none           &none            &kp MINUS  &kp EQUAL     &kp UP    &none
-                &none  &kp HOME  &none  &kp DEL    &kp RIGHT  &none           &kp BSPC        &kp LBKT         &kp RBKT   &kp SEMI      &kp APOS
-                &none  &none     &none  &kp CAPS   &none      &kp LEFT        &kp DOWN        &kp C_MENU       &none      &mmv MOVE_UP  &kp FSLH
-                &none  &none     &none  &kp LSHFT  &mkp LCLK  &mmv MOVE_LEFT  &mmv MOVE_DOWN  &mmv MOVE_RIGHT
+                &trans  &trans    &trans  &kp END    &trans     &trans          &trans          &trans           &kp MINUS  &kp EQUAL     &kp UP    &trans
+                &trans  &kp HOME  &trans  &kp DEL    &kp RIGHT  &trans          &kp BSPC        &kp LBKT         &kp RBKT   &kp SEMI      &kp APOS
+                &trans  &trans    &trans  &kp CAPS   &trans     &kp LEFT        &kp DOWN        &kp C_MENU       &trans     &mmv MOVE_UP  &kp FSLH
+                &trans  &trans    &trans  &kp LSHFT  &mkp LCLK  &mmv MOVE_LEFT  &mmv MOVE_DOWN  &mmv MOVE_RIGHT
             >;
         };
 
         HORIZON {
             bindings = <
                 &kp K_SLEEP  &kp F1      &kp F2       &kp F3      &kp F4          &kp F5        &kp F6           &kp F7      &kp F8     &kp F9     &kp F10     &kp K_SLEEP
-                &none        &none       &none        &none       &none           &kp C_PREV    &kp C_PP         &kp C_NEXT  &kp F11    &kp F12    &none
-                &none        &bt BT_PRV  &bt BT_NXT   &bt BT_CLR  &bt BT_CLR_ALL  &kp C_VOL_DN  &kp C_VOLUME_UP  &kp K_MUTE  &kp PG_DN  &kp PG_UP  &kp INSERT
-                &none        &sys_reset  &bootloader  &none       &studio_unlock  &soft_off     &kp BSPC         &kp DEL
+                &trans       &trans      &trans       &trans      &trans          &kp C_PREV    &kp C_PP         &kp C_NEXT  &kp F11    &kp F12    &trans
+                &trans       &bt BT_PRV  &bt BT_NXT   &bt BT_CLR  &bt BT_CLR_ALL  &kp C_VOL_DN  &kp C_VOLUME_UP  &kp K_MUTE  &kp PG_DN  &kp PG_UP  &kp INSERT
+                &trans       &sys_reset  &bootloader  &trans      &studio_unlock  &soft_off     &kp BSPC         &kp DEL
             >;
         };
     };

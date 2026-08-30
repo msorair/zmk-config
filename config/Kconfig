@@ -1,0 +1,68 @@
+menu "BDKB Custom Features"
+
+config BDKB_BATTERY_STATUS_LEDS
+    bool "Battery/charge status LEDs (GPIO)"
+    depends on LED && ZMK_BATTERY_REPORTING && USB_DEVICE_STACK
+    help
+      Drive three GPIO LEDs based on battery level and USB power state:
+      low battery (red blink), charging approximation (blue), and near-full (green).
+
+if BDKB_BATTERY_STATUS_LEDS
+
+choice BDKB_BATTERY_STATUS_LED_MODE
+    prompt "Battery status LED mode"
+    default BDKB_BATTERY_STATUS_LED_MODE_RGB
+
+config BDKB_BATTERY_STATUS_LED_MODE_RGB
+    bool "RGB (red low blink, blue charging, green near-full)"
+
+config BDKB_BATTERY_STATUS_LED_MODE_SINGLE
+    bool "Single red LED (<low threshold solid, charging breathing)"
+
+endchoice
+
+config BDKB_BATTERY_STATUS_LED_LOW_ON_PCT
+    int "Low battery threshold on (%)"
+    range 0 100
+    default 15
+
+config BDKB_BATTERY_STATUS_LED_LOW_OFF_PCT
+    int "Low battery threshold off (%)"
+    range 0 100
+    default 18
+
+config BDKB_BATTERY_STATUS_LED_FULL_ON_PCT
+    int "Near-full threshold on (%)"
+    range 0 100
+    default 98
+
+config BDKB_BATTERY_STATUS_LED_FULL_OFF_PCT
+    int "Near-full threshold off (%)"
+    range 0 100
+    default 95
+
+config BDKB_BATTERY_STATUS_LED_BLINK_MS
+    int "Low battery blink period (ms)"
+    range 100 5000
+    default 500
+
+endif # BDKB_BATTERY_STATUS_LEDS
+
+config BDKB_SP3T_MODE_SWITCH
+    bool "SP3T mode switch (USB/BLE/SOFT_OFF)"
+    depends on KSCAN && ZMK_USB && ZMK_BLE && ZMK_PM_SOFT_OFF
+    help
+      Handle a dedicated SP3T toggle switch via kscan-gpio-direct and switch
+      endpoint mode by hardware position:
+      column 0 -> USB_ONLY, column 1 -> BLE_ON, column 2 -> SOFT_OFF.
+
+if BDKB_SP3T_MODE_SWITCH
+
+config BDKB_SP3T_MODE_SWITCH_DEBOUNCE_MS
+    int "SP3T debounce delay (ms)"
+    range 1 1000
+    default 30
+
+endif # BDKB_SP3T_MODE_SWITCH
+
+endmenu
