@@ -73,7 +73,12 @@ static int sp3t_apply_mode(enum sp3t_mode mode) {
     case SP3T_MODE_USB:
         return zmk_endpoints_select_transport(ZMK_TRANSPORT_USB);
     case SP3T_MODE_BLE:
+#if IS_ENABLED(CONFIG_ZMK_BLE)
         return zmk_endpoints_select_transport(ZMK_TRANSPORT_BLE);
+#else
+        LOG_INF("BLE disabled, falling back to USB transport");
+        return zmk_endpoints_select_transport(ZMK_TRANSPORT_USB);
+#endif
     case SP3T_MODE_SOFT_OFF:
         LOG_INF("SP3T applying SOFT_OFF");
         return zmk_pm_soft_off();

@@ -7,5 +7,4 @@
 #
 include:
   - board: bdkb40
-    snippet: zmk-usb-logging
     artifact-name: bdkb40_v1

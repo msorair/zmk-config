@@ -28,6 +28,7 @@
 
     keys {
         compatible = "gpio-keys";
+        status = "disabled";
 
         soft_off_gpio_key: soft_off_gpio_key {
             gpios = <&gpio1 10 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>;
@@ -51,13 +52,8 @@
         // appropriate driver and update the properties below to match.
         // See https://zmk.dev/docs/config/kscan for supported key scan drivers.
         compatible = "zmk,kscan-gpio-matrix";
-        // Set this to "col2row" or "row2col" to match the hardware. If using
-        // "row2col", change the col-gpios to (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)
-        // and the row-gpios to GPIO_ACTIVE_HIGH.
         diode-direction = "col2row";
 
-        // Replace these comments with the GPIO pins in the matrix.
-        // See https://zmk.dev/docs/development/hardware-integration/new-shield#shield-overlays
         col-gpios
             = <&gpio1 13 GPIO_ACTIVE_HIGH>  // c0
             , <&gpio0  2 GPIO_ACTIVE_HIGH>  // c1
@@ -83,7 +79,7 @@
 	kscan_toggle: kscan_toggle {
 		compatible = "zmk,kscan-gpio-direct";
 		label = "Toggle KSCAN";
-        status = "disabled";
+        status = "okay";
         toggle-mode;
 		input-gpios
 			= <&gpio0 10 GPIO_ACTIVE_LOW>
