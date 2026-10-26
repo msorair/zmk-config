@@ -7,7 +7,6 @@
 #include <nordic/nrf52840_qiaa.dtsi>
 // #include <common/nordic/nrf52840_uf2_boot_mode.dtsi>
 #include <dt-bindings/zmk/matrix_transform.h>
-#include <dt-bindings/zmk/outputs.h>
 
 #include "bdkb40-pinctrl.dtsi"
 #include "bdkb40-layouts.dtsi"
@@ -26,27 +25,6 @@
         zmk,kscan = &kscan_main;
     };
 
-    keys {
-        compatible = "gpio-keys";
-        status = "disabled";
-
-        soft_off_gpio_key: soft_off_gpio_key {
-            gpios = <&gpio1 10 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>;
-        };
-    };
-
-    wakeup_scan: wakeup_scan {
-        compatible = "zmk,gpio-key-wakeup-trigger";
-        trigger = <&soft_off_gpio_key>;
-        wakeup-source;
-        extra-gpios = <&gpio0 2 GPIO_ACTIVE_HIGH>;
-    };
-
-    soft_off_wakers {
-        compatible = "zmk,soft-off-wakeup-sources";
-        wakeup-sources = <&wakeup_scan>;
-    };
-    
     kscan_main: kscan_main {
         // If the hardware does not use a switch matrix, change this to the
         // appropriate driver and update the properties below to match.
@@ -79,7 +57,7 @@
 	kscan_toggle: kscan_toggle {
 		compatible = "zmk,kscan-gpio-direct";
 		label = "Toggle KSCAN";
-        status = "okay";
+        status = "disabled";
         toggle-mode;
 		input-gpios
 			= <&gpio0 10 GPIO_ACTIVE_LOW>

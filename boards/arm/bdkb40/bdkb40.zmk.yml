@@ -15,10 +15,10 @@ url: https://example.com
 # See https://zmk.dev/docs/development/hardware-integration/hardware-metadata-files#features
 features:
   - keys
+  - studio
 
 outputs:
   - usb
-  - ble
 # If your board has multiple revisions in its board.yml, create a matching list here:
 # revisions:
 #   - 2.0.0
