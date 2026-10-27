@@ -19,8 +19,6 @@
         zephyr,code-partition = &code_partition;
         zephyr,sram = &sram0;
         zephyr,flash = &flash0;
-        // Uncomment this if you enabled one of the "vddh" nodes below.
-        zmk,battery = &builtin_fuel_gauge;
         zmk,physical-layout = &default_layout;
         zmk,kscan = &kscan_main;
     };
@@ -131,7 +129,7 @@
 // };
 
 &adc {
-    status = "okay";
+    status = "disabled";
 };
 
 &gpiote {
@@ -147,7 +145,7 @@
 };
 
 &i2c0 {
-    status = "okay";
+    status = "disabled";
     compatible = "nordic,nrf-twi";
     pinctrl-0 = <&i2c0_default>;
     pinctrl-1 = <&i2c0_sleep>;
@@ -155,7 +153,7 @@
 
     builtin_fuel_gauge: max17048@36 {
         compatible = "zmk,maxim-max17048";
-        status = "okay";
+        status = "disabled";
         reg = <0x36>;
     };
 };
