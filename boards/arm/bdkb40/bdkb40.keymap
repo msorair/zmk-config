@@ -12,7 +12,9 @@
 
 &lt {
     flavor = "hold-preferred";
-    tapping-term-ms = <100>;
+    tapping-term-ms = <200>;
+    quick-tap-ms = <220>;
+    retro-tap;
 };
 
 / {
@@ -24,8 +26,9 @@
             compatible = "zmk,behavior-hold-tap";
             #binding-cells = <2>;
             flavor = "hold-preferred";
-            tapping-term-ms = <100>;
-            quick-tap-ms = <100>;
+            tapping-term-ms = <200>;
+            quick-tap-ms = <220>;
+            retro-tap;
             bindings = <&mo>, <&kp>;
         };
     };
