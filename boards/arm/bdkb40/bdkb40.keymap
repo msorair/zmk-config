@@ -14,7 +14,6 @@
     flavor = "hold-preferred";
     tapping-term-ms = <200>;
     quick-tap-ms = <220>;
-    retro-tap;
 };
 
 / {
@@ -28,7 +27,6 @@
             flavor = "hold-preferred";
             tapping-term-ms = <200>;
             quick-tap-ms = <220>;
-            retro-tap;
             bindings = <&mo>, <&kp>;
         };
     };
