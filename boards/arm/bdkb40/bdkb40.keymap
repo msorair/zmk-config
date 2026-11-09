@@ -57,13 +57,13 @@
             // | ESC |  Q  |  W  |  E  |  R  |  T  |  Y  |  U  |  I  |  O  |  P  |BSPC |
             // |  CAPS |  A  |  S  |  D  |  F  |  G  |  H  |  J  |  K  |  L  |    \    |
             // |  SHIFT  |  Z  |  X  |  C  |  V  |  B  |  N  |  M  |  ,  |  .  | SHIFT |
-            // |  CTRL |LMETA|  ALT  |   SPACE   |     SPACE     | Raise |RMETA|  CTRL |
+            // |  CTRL |LMETA|  ALT  |   SPACE   |    NUMERIC    | Raise |RMETA|  CTRL |
 
             bindings = <
                 &kp ESC             &kp Q     &kp W      &kp E      &kp R       &kp T      &kp Y      &kp U  &kp I      &kp O    &kp P     &kp BSLH
                 &lt_rpt EMACS TAB   &kp A     &kp S      &kp D      &kp F       &kp G      &kp H      &kp J  &kp K      &kp L    &lt_rpt FUNC ENTER
                 &kp LSHIFT          &kp Z     &kp X      &kp C      &kp V       &kp B      &kp N      &kp M  &kp COMMA  &kp DOT  &kp RSHIFT
-                &kp LCTRL           &kp LALT  &kp LMETA  &kp SPACE  &lt_rpt NUMERIC SPACE  &kp RCTRL  &kp RMETA         &kp RALT
+                &kp LCTRL           &kp LALT  &kp LMETA  &kp SPACE  &mo NUMERIC           &kp RCTRL  &kp RMETA         &kp RALT
             >;
         };
 
